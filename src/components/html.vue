@@ -1,5 +1,5 @@
 <template>
-  Standalone:
+  html:
   <button @click="connect" :disabled="disabled">{{ msg }}</button>
   <br />
 </template>
@@ -15,15 +15,9 @@ export default {
       projectId: '3f5b78ae39a9eb6fa5d9b40570489df8',
       namespaces: {
         eip155: {
-          methods: [
-            'eth_sendTransaction',
-            'eth_signTransaction',
-            'eth_sign',
-            'personal_sign',
-            'eth_signTypedData'
-          ],
+          methods: ['eth_sign'],
           chains: ['eip155:1', 'eip155:56', 'eip155:66'],
-          events: ['accountsChanged', 'chainChanged']
+          events: ['accountsChanged']
         }
       },
       disabled: false,
@@ -38,15 +32,7 @@ export default {
     async initialize() {
       try {
         this.disabled = true
-        this.signClient = await SignClient.init({
-          projectId: this.projectId,
-          metadata: {
-            name: 'Ave.ai',
-            description: '如果你是一个传说',
-            url: 'https://ave.ai/',
-            icons: ['https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg']
-          }
-        })
+        this.signClient = await SignClient.init({ projectId: this.projectId })
         console.log('11111111', this.signClient)
         this.disabled = false
         this.msg = 'Connect Wallet'

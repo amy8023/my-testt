@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@walletconnect/ethereum-provider": "^2.5.1",
     "@walletconnect/sign-client": "^2.5.1",
     "@web3modal/standalone": "^2.2.0",
     "vue": "^3.0.4"
